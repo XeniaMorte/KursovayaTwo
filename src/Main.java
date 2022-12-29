@@ -36,9 +36,22 @@ public class Main {
                             "3- еженедельная,\n" +
                             "4- ежемесячная,\n" +
                             "5- ежегодная.");
-                    int povtor = scanner.nextInt();
-                    diary.addTask(new Task(name, field, TaskType.getTaskbyNumber(number), LocalDateTime.now(), Utils.getPovtoryaemostById(povtor)));
 
+                    int povtor = scanner.nextInt();
+                    diary.addTask(new Task(name, field, TaskType.getTaskbyNumber(number), LocalDateTime.now(), Utils.getPovtoryaemostById(povtor,LocalDateTime.now().plusHours(1))));
+
+                }
+                if (choise == 2) {
+                    System.out.println( diary.getAllTasksByToday());
+                }
+                if (choise == 3) {
+                    System.out.println("Какую  задачу удалить? Введити id задачи на удаление .");
+                    int delitedId;
+                  delitedId=  scanner.nextInt();
+                  diary.deleteTaskById(delitedId);
+                }
+                if (choise == 4) {
+                   return;
                 }
             } catch (RuntimeException ext) {
                 System.out.println("err: " + ext.getMessage());
